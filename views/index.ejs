@@ -1,0 +1,59 @@
+<%- include('./includes/base.ejs') %> <%- include('./includes/header.ejs') %>
+<main class="text-center accordion-body">
+	<h1 class="text-center">Welcome To contact Book</h1>
+	<div class="d-inline-flex">
+		<div class="w-50">
+			<img src="images/iconLogo.png" class="img-fluid" alt="" />
+		</div>
+		<div class="w-50">
+			<div class="card">
+				<h4 class="card-title">Already Members</h4>
+				<form action="/login" method="POST" class="card-body">
+					<% if(hasError){ %>
+					<div class="mb-3 border-danger">
+						<ul class="text-danger list-unstyled">
+							<% for (const msg of errorMessage) { %>
+							<li><%= msg %></li>
+							<% } %>
+						</ul>
+					</div>
+					<% } %>
+					<div class="mb-3">
+						<label for="exampleInputEmail1" class="form-label card-text"
+							>Email address</label
+						>
+						<input
+							type="email"
+							class="form-control <%= validationErrors.find(e => e.param === 'email')? 'border-danger':null  %> "
+							name="email"
+							value="<%= oldValue.email %>"
+							aria-describedby="emailHelp"
+						/>
+						<div id="emailHelp" class="form-text">
+							We'll never share your email with anyone else.
+						</div>
+					</div>
+					<div class="mb-3">
+						<label for="exampleInputPassword1" class="form-label card-text"
+							>Password</label
+						>
+						<input
+							type="password"
+							class="form-control <%= validationErrors.find(e => e.param === 'password')? 'border-danger':null  %> "
+							name="password"
+							id="password"
+							value="<%= oldValue.password %>"
+						/>
+					</div>
+					<input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+					<button type="submit" class="btn btn-outline-primary">Submit</button>
+				</form>
+			</div>
+			<br />
+			<h3>Don't have an account yet?</h3>
+			<a href="/signup" class="link-info">Create new account</a>
+		</div>
+	</div>
+</main>
+
+<%- include('./includes/footer.ejs') %>

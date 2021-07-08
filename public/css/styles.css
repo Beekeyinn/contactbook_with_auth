@@ -1,0 +1,33 @@
+body {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	width: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+.logo__image {
+	width: 50%;
+	height: auto;
+}
+
+.logo__image img {
+	width: 100%;
+	height: 100%;
+}
+.image__name {
+	display: flex;
+	justify-content: space-evenly;
+}
+
+.userImage {
+	width: 6vw;
+	height: 6vh;
+	border-radius: 2.5vmax;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-origin: center;
+}

@@ -1,0 +1,107 @@
+<%- include('../includes/base.ejs') %> <%- include('../includes/header.ejs') %>
+<main class="container">
+	<div class="text-center text-info accordion-body">
+		<h1>Emergency Contacts</h1>
+		<a
+			href="/emergency/add-emergency-contact"
+			class="btn btn-outline-primary float-end"
+			>Add Emergency Contact</a
+		>
+	</div>
+	<br />
+
+	<% if(police.length>0){ %>
+	<div>
+		<h4 class="text-center text-info text-decoration-underline">Police</h4>
+		<table class="table table-responsive table-hover shadow-sm">
+			<thead class="text-info">
+				<tr>
+					<th>Name</th>
+					<th>Contact Number</th>
+					<th>Place</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% police.forEach(contact => { %>
+				<tr>
+					<td><%= contact.name %></td>
+					<td><%= contact.contactNo %></td>
+					<td><%= contact.place %></td>
+				</tr>
+				<% }); %>
+			</tbody>
+		</table>
+	</div>
+	<% } %> <% if(ambulance.length>0){ %>
+	<div>
+		<h4 class="text-center text-info text-decoration-underline">Ambulance</h4>
+		<table class="table table-responsive table-hover shadow-sm">
+			<thead class="text-info">
+				<tr>
+					<th>Name</th>
+					<th>Contact Number</th>
+					<th>Place</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% ambulance.forEach(contact => { %>
+				<tr>
+					<td><%= contact.name %></td>
+					<td><%= contact.contactNo %></td>
+					<td><%= contact.place %></td>
+				</tr>
+				<% }); %>
+			</tbody>
+		</table>
+	</div>
+	<% } %> <% if(hospital.length>0){ %>
+
+	<div>
+		<h4 class="text-center text-info text-decoration-underline">Hospital</h4>
+		<table class="table table-responsive table-hover shadow-sm">
+			<thead class="text-info">
+				<tr>
+					<th>Name</th>
+					<th>Contact Number</th>
+					<th>Place</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% hospital.forEach(contact => { %>
+				<tr>
+					<td><%= contact.name %></td>
+					<td><%= contact.contactNo %></td>
+					<td><%= contact.place %></td>
+				</tr>
+				<% }); %>
+			</tbody>
+		</table>
+	</div>
+	<% } %> <% if(others.length>0){ %>
+
+	<div>
+		<h4 class="text-center text-info text-decoration-underline">Others</h4>
+		<table class="table table-responsive table-hover shadow-sm">
+			<thead class="text-info">
+				<tr>
+					<th>Name</th>
+					<th>Contact Number</th>
+					<th>Place</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% others.forEach(contact => { %>
+				<tr>
+					<td><%= contact.name %></td>
+					<td><%= contact.contactNo %></td>
+					<td><%= contact.place %></td>
+				</tr>
+				<% }); %>
+			</tbody>
+		</table>
+	</div>
+	<% } %> <% if(!police&&!ambulance&&!hospital&&!others){ %>
+	<h1>No Emergency Contacts</h1>
+	<% } %>
+</main>
+<%- include('../includes/footer.ejs') %>

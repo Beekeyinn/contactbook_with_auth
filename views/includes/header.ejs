@@ -1,0 +1,27 @@
+
+</head>
+<body>
+    
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/contacts">Contact Book</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link <%= path==='/contacts'?'active':null %> "   aria-current="page" href="/contacts">Home</a>
+        <% if(admin){ %> 
+                  <a class="nav-link <%= path==='emergency/contacts'?'active':null %>" href="/emergency/emergency-contacts">Emergency Contacts</a>
+        <% } %> 
+      </div>
+
+    </div>
+    <% if(isAuthenticated){ %> 
+    <form action="/logout" method="POST" class="d-flex">
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+      <button type="submit" class="btn btn-outline-primary">Logout</button>
+    </form>
+        <% } %>
+  </div>
+</nav>

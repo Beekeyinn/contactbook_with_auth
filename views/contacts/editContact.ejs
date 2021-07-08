@@ -1,0 +1,81 @@
+<%- include('../includes/base.ejs') %> <%- include('../includes/header.ejs') %>
+<main class="container">
+	<h1 class="text-center">Add Contact</h1>
+    <div class="card">
+		<form 
+			class="card-body" 
+			action="<% if(!editing){ %> /contacts/add-contact?type=contacts<% }else{ %>/contacts/edit-contact?type=contacts<% } %>" 
+			method="POST" 
+			enctype="multipart/form-data" 
+		>
+		<% if(hasError){ %>
+			<% for (const error of errorMessage) { %>
+				<li><%= error %></li>	
+			<% } %>
+		<% } %> 
+		<% if(editing){ %> 
+			<input type="hidden" name="id" value="<%= contact._id %>"/>
+		<% } %> 
+		<div class="mb-3">
+						<label for="name" class="form-label card-text"
+							>Name</label
+						>
+						<input
+							type="text"
+							class="form-control"
+							name="name"
+							value="<% if(hasError||editing){ %><%= contact.name %><% } %>"
+							required
+						/>
+					</div>
+                    <div class="mb-3">
+						<label for="email" class="form-label card-text"
+							>Email</label
+						>
+						<input
+							type="email"
+							class="form-control"
+							name="email"
+							id="email"
+							value="<% if(hasError||editing){ %><%= contact.email %><% } %>"
+						/>
+					</div>
+					<div class="mb-3">
+						<label for="contactNo" class="form-label card-text"
+							>Contact No.</label>
+						<input
+							type="text"
+							class="form-control"
+							name="contactNo"
+							id="contactNo"
+							value="<% if(hasError||editing){ %><%= contact.contactNo %><% } %>"
+						/>
+					</div>
+                    <div class="mb-3">
+						<label for="address" class="form-label card-text"
+							>Address</label
+						>
+						<input
+							type="text"
+							class="form-control"
+							name="address"
+							id="address"
+							value="<% if(hasError||editing){ %><%= contact.address %><% } %>"
+						/>
+					</div>
+                    <div class="mb-3">
+						<label for="image" class="form-label card-text"
+							>Contact Image</label
+						>
+						<input
+							type="file"
+							class="form-control"
+							name="image"
+							id="image"
+						/>
+					</div>
+					<input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+					<button type="submit" class="btn btn-outline-primary">Add Contact</button>
+		</form>
+</main>
+<%- include('../includes/footer.ejs') %>

@@ -1,0 +1,60 @@
+<%- include('../includes/base.ejs') %> <%- include('../includes/header.ejs') %>
+<main class="container accordion-body">
+	<h1 class="text-center">Add Emergency Contact</h1>
+    <div class="card">
+		<form action="/emergency/add-emergency-contact" method="POST" class="card-body" novalidate>
+					<div class="mb-3">
+						<label for="name" class="form-label card-text"
+							>Name</label
+						>
+						<input
+							type="text"
+							class="form-control"
+							name="name"
+                            placeholder="Contact Name"
+							value="<%= hasError ? value.name:null %>"
+						/>
+					</div>
+					<div class="mb-3">
+						<label for="contactNo" class="form-label card-text"
+							>Contact No.</label
+						>
+						<input
+							type="text"
+							class="form-control <%= validationErrors.find(e=>e.param === 'contactNo')?'border-danger':null %>"
+							name="contactNo"
+							id="contactNo"
+                            placeholder="Contact Number"
+							value="<%= hasError ? value.contactNo:null %>"
+						/>
+					</div>
+                    <div class="mb-3">
+						<label for="place" class="form-label card-text"
+							>Place</label
+						>
+						<input
+							type="text"
+							class="form-control <%= validationErrors.find(e=>e.param === 'place')?'border-danger':null %>"
+							name="place"
+							id="place"
+                            placeholder="Contact Place"
+							value="<%= hasError ? value.place:null %>"
+						/>
+					</div>
+                    <div class="mb-3">
+						<label for="contactNo" class="form-label card-text"
+							>Service</label
+						>
+						<select name="service" id="service" class="form-select <%= validationErrors.find(e=>e.param === 'service')?'border-danger':null %>" >
+                            <option value=" ">---------------</option>
+                            <option <%= value.service === 'Police'? 'selected': null  %>  value="Police">Police</option>
+                            <option <%= value.service === 'Ambulance'? 'selected': null  %> value="Ambulance">Ambulance</option>
+                            <option <%= value.service === 'Hospital'? 'selected': null  %> value="Hospital">Hospital</option>
+                            <option <%= value.service === 'Others'? 'selected': null  %> value="Others">Others</option>
+                        </select>
+					</div>
+					<input type="hidden" name="_csrf" value="<%= csrfToken %>">
+					<button type="submit" class="btn btn-outline-primary">Add Emergency Contact</button>
+		</form>
+</main>
+<%- include('../includes/footer.ejs') %>

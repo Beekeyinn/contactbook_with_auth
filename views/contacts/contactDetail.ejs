@@ -1,0 +1,21 @@
+<%- include('../includes/base.ejs') %> <%-
+include('../includes/header.ejs') %>
+<main class="container">
+	<div class="card text-center">
+		<h3 class="card-header"><%= contact.name %></h3>
+		<img
+			src="<%= contact.image %> "
+			alt="<%= contact.name %>"
+			class="card-img"
+		/>
+		<div class="card-body">
+			<label>Email: </label>
+			<p class="card-text"><%= contact.email %></p>
+			<label>Address: </label>
+			<address><%= contact.address %></address>
+			<label>Contact No:</label>
+			<p class="card-text"><%= contact.contactNo %></p>
+		</div>
+	</div>
+</main>
+<%- include('../includes/footer.ejs') %>

@@ -1,0 +1,85 @@
+<%- include('../includes/base.ejs') %> <%-
+include('../includes/header.ejs') %>
+<main class="container">
+	<div class="text-center text-info accordion-body">
+		<h1>Contacts</h1>
+		<a
+			href="/contacts/add-contact"
+			class="btn btn-outline-primary float-end"
+			>Add Contact</a
+		>
+	</div>
+	<br />
+	<div class="mt-2">
+		<table
+			class="
+				table table-active table-responsive table-hover
+				shadow-sm
+				rounded-3
+			"
+		>
+			<thead class="table-info">
+				<tr class="text-info">
+					<td>Name</td>
+					<td>Address</td>
+					<td>Email</td>
+					<td>Contact No</td>
+					<td>Actions</td>
+				</tr>
+			</thead>
+			<tbody>
+				<% for (let contact of userContacts) { %>
+				<tr class="d-table-row">
+					<td>
+						<a
+							href="/contacts/contact-detail/<%= contact.contactId._id %>"
+							class="d-flex justify-content-between"
+							><div
+								class="userImage"
+								style="
+									background-image: url('<%= contact.contactId.image %>');
+								"
+							></div>
+							<%= contact.contactId.name %></a
+						>
+					</td>
+					<td><%= contact.contactId.address %></td>
+					<td><%= contact.contactId.email %></td>
+					<td><%= contact.contactId.contactNo %></td>
+					<td>
+						<div class="d-inline-flex">
+							<a
+								href="/contacts/edit-contact/<%= contact.contactId._id %>?edit=true"
+								class="btn btn-outline-primary me-2"
+								>Edit</a
+							>
+
+							<form
+								action="/contacts/delete-contact"
+								method="POST"
+							>
+								<input
+									type="hidden"
+									name="_csrf"
+									value="<%= csrfToken %>"
+								/>
+								<input
+									type="hidden"
+									name="id"
+									value="<%= contact.contactId._id %>"
+								/>
+								<input
+									type="submit"
+									class="btn btn-outline-danger"
+									value="Delete"
+								/>
+							</form>
+						</div>
+					</td>
+				</tr>
+				<% } %>
+			</tbody>
+		</table>
+	</div>
+</main>
+<%- include('../includes/footer.ejs') %>
