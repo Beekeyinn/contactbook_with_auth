@@ -1,2 +1,2 @@
 # contactbook_with_auth
-Nodejs project
+Simple Nodejs project
